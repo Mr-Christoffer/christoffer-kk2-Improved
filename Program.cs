@@ -41,8 +41,15 @@ while (true)
         else if (choice == 2)
         {
             Console.Write("Nummer: ");
-            int number = int.Parse(Console.ReadLine());
-            list.RemoveAt(number);
+            try
+            {
+                int number = int.Parse(Console.ReadLine());
+                list.RemoveAt(number);
+            }
+            catch
+            {
+                System.Console.WriteLine("Varan finns inte och kan därför inte tas bort. Du går nu tillbaka till menyn");
+            }
         }
         else if (choice == 3)
         {
