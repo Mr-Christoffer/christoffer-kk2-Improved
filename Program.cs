@@ -39,7 +39,11 @@ while (true)
 
                 try
                 {
-                    list.Add(new Item(name, price));
+                    bool wasItemAdded = list.Add(new Item(name, price));
+                    if (wasItemAdded == false)
+                    {
+                        System.Console.WriteLine("Budgeten räckte inte. Varan har inte lagts till.");
+                    }
                     break;
                 }
                 catch (ArgumentOutOfRangeException)

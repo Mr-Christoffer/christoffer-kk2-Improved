@@ -12,17 +12,20 @@ class ShoppingList
 
     }
 
-    public void Add(Item item)
+    public bool Add(Item item)
     {
+        bool addedItem;
         int currentAmount = Total();
         if (item.Price + currentAmount <= Budget)
         {
             items.Add(item);
+            addedItem = true;
         }
         else
         {
-            System.Console.WriteLine("Din budget räcker inte till. Varan har inte lagts till.");
+            addedItem = false;
         }
+        return addedItem;
 
 
     }

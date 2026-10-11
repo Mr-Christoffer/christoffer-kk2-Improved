@@ -1,3 +1,4 @@
 32;Bröd
 1000;Sprit
 42;Kaffe
+500;Cigarrer
