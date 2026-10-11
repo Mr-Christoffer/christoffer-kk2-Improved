@@ -37,9 +37,13 @@ while (true)
                     list.Add(new Item(name, price));
                     break;
                 }
-                catch
+                catch (FormatException)
                 {
                     System.Console.WriteLine("Ange endast heltal som pris. V.G. Försök igen!");
+                }
+                catch (OverflowException)
+                {
+                    System.Console.WriteLine("Talet du har angett är för stort.");
                 }
             }
 
@@ -53,9 +57,17 @@ while (true)
                 int number = int.Parse(Console.ReadLine());
                 list.RemoveAt(number);
             }
-            catch
+            catch (FormatException)
+            {
+                System.Console.WriteLine("Endast heltal är tillåtet. Du återgår nu till menyn");
+            }
+            catch (ArgumentOutOfRangeException)
             {
                 System.Console.WriteLine("Varan finns inte och kan därför inte tas bort. Du går nu tillbaka till menyn");
+            }
+            catch (OverflowException)
+            {
+                System.Console.WriteLine("Du har angett ett för stort tal.");
             }
         }
         else if (choice == 3)

@@ -70,32 +70,60 @@ class ShoppingList
         try
         {
             File.WriteAllText(path, string.Join("\r\n", lines) + "\r\n");
+            Console.WriteLine("Listan är sparad.");
         }
-        catch
+        catch (UnauthorizedAccessException)
         {
+            System.Console.WriteLine("Du har inte behörighet att redigera denna fil. Inget har sparats");
+        }
+        catch (IOException)
+        {
+            System.Console.WriteLine("Filen kunde inte sparas");
         }
 
-        Console.WriteLine("Listan är sparad.");
+
     }
 
     // Reads the file back into the list.
     public void Load()
     {
-        string text = File.ReadAllText(path);
-        string[] lines = File.ReadAllLines(path);
-        //string[] lines = text.Split('\n');
-
-        foreach (string line in lines)
+        try
         {
-            string[] parts = line.Split(';');
-            try
+            string[] lines = File.ReadAllLines(path);
+            foreach (string line in lines)
             {
-                items.Add(new Item(parts[1], int.Parse(parts[0])));
+                string[] parts = line.Split(';');
+                try
+                {
+                    items.Add(new Item(parts[1], int.Parse(parts[0])));
+                }
+                catch (FormatException)
+                {
+                    System.Console.WriteLine("En rad innehöll felaktigt formaterad information. Raden har hoppats över.");
+                }
+                catch (OverflowException)
+                {
+                    System.Console.WriteLine("Raden innehåller priser som är för stora. Raden har hoppats över.");
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    System.Console.WriteLine("Felaktig rad hoppades över.");
+                }
             }
-            catch
-            {
-            }
-
         }
+        catch (UnauthorizedAccessException)
+        {
+            System.Console.WriteLine("Du har inte behörighet till denna fil. Inget har laddats.");
+        }
+        catch (IOException)
+        {
+            System.Console.WriteLine("Filen kunde inte läsas.");
+        }
+
+
+
+
     }
 }
+
+
