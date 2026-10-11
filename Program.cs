@@ -1,3 +1,10 @@
+string file = "items.txt";
+if (!File.Exists(file))
+{
+    File.WriteAllText(file, "");
+    System.Console.WriteLine($"{file} fanns inte. En ny fil har skapats.");
+}
+
 ShoppingList list = new ShoppingList("items.txt");
 list.Load();
 
