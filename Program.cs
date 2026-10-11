@@ -5,7 +5,7 @@ if (!File.Exists(file))
     System.Console.WriteLine($"{file} fanns inte. En ny fil har skapats.");
 }
 
-ShoppingList list = new ShoppingList("items.txt");
+ShoppingList list = new ShoppingList("items.txt", 2000);
 list.Load();
 
 while (true)

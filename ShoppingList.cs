@@ -3,15 +3,28 @@ class ShoppingList
 {
     private List<Item> items = new List<Item>();
     private string path;
+    public int Budget;
 
-    public ShoppingList(string path)
+    public ShoppingList(string path, int budget)
     {
         this.path = path;
+        Budget = budget;
+        
     }
 
     public void Add(Item item)
     {
-        items.Add(item);
+        int currentAmount = Total();
+        if (item.Price + currentAmount <= Budget)
+        {
+            items.Add(item);
+        }
+        else
+        {
+            System.Console.WriteLine("Din budget räcker inte till. Varan har inte lagts till.");
+        }
+
+        
     }
 
     // Removes the item the user sees as number 1, 2, 3 ...
