@@ -24,3 +24,7 @@ Program crashes if user enters a character which is not a choice (1-5)
 ## Error 6:
 Program crashes if "items.txt" doesnt exist (or has a different namne)
 * Fixed by checking if the file exists before it gets loaded. If it doesnt exists, program will create one.
+
+## Error 7:
+Calculation of total sum is incorrect. First item doesn't included in calculation.
+* Fixed by changing int i = 1 to int i = 0 in Shoppinglist Total-method
