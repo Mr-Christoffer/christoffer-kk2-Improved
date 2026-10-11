@@ -30,4 +30,4 @@ Calculation of total sum is incorrect. First item doesn't included in calculatio
 * Fixed by changing int i = 1 to int i = 0 in Shoppinglist Total-method
 
 # Design choices
-Added a fixed budget to shoppinglist class. When trying to add item, the add-method will check if the budget allows for it.
+Added a fixed budget to shoppinglist class. When trying to add item, the add-method will check if the budget allows for it. A error message will be shown if the budget does not allow a new item.

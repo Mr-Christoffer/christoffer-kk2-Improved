@@ -4,7 +4,6 @@ if (!File.Exists(file))
     File.WriteAllText(file, "");
     System.Console.WriteLine($"{file} fanns inte. En ny fil har skapats.");
 }
-
 ShoppingList list = new ShoppingList("items.txt", 2000);
 list.Load();
 
@@ -30,27 +29,27 @@ while (true)
             while (true)
             {
                 Console.Write("Pris: ");
+                string priceInput = Console.ReadLine();
+
+                if (!int.TryParse(priceInput, out int price))
+                {
+                    Console.WriteLine("Ogiltig inmatning. Försök igen.");
+                    continue;
+                }
 
                 try
                 {
-                    string priceInput = Console.ReadLine();
-                    if (int.TryParse(priceInput, out int price))
-                    {
-                        list.Add(new Item(name, price));
-                        break;
-                    }
-                    else
-                    {
-                        System.Console.WriteLine("Ogiltig inmatning. Försök igen.");
-                    }
+                    list.Add(new Item(name, price));
+                    break;
                 }
-                catch (FormatException)
+                catch (ArgumentOutOfRangeException)
                 {
-                    System.Console.WriteLine("Ange endast heltal som pris. V.G. Försök igen!");
+                    Console.WriteLine("Priset får inte vara negativt. Försök igen.");
                 }
-                catch (OverflowException)
+                catch (ArgumentException ex)
                 {
-                    System.Console.WriteLine("Talet du har angett är för stort.");
+                    Console.WriteLine($"{ex.Message} Du återgår nu till menyn.");
+                    break;
                 }
             }
         }

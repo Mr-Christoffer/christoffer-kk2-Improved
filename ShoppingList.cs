@@ -9,7 +9,7 @@ class ShoppingList
     {
         this.path = path;
         Budget = budget;
-        
+
     }
 
     public void Add(Item item)
@@ -24,7 +24,7 @@ class ShoppingList
             System.Console.WriteLine("Din budget räcker inte till. Varan har inte lagts till.");
         }
 
-        
+
     }
 
     // Removes the item the user sees as number 1, 2, 3 ...
@@ -121,6 +121,10 @@ class ShoppingList
                 catch (IndexOutOfRangeException)
                 {
                     System.Console.WriteLine("Felaktig rad hoppades över.");
+                }
+                catch (ArgumentException)
+                {
+                    System.Console.WriteLine("En rad hade tomt namn eller negativt pris. Raden har hoppats över.");
                 }
             }
         }
