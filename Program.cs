@@ -33,9 +33,16 @@ while (true)
 
                 try
                 {
-                    int price = int.Parse(Console.ReadLine());
-                    list.Add(new Item(name, price));
-                    break;
+                    string priceInput = Console.ReadLine();
+                    if (int.TryParse(priceInput, out int price))
+                    {
+                        list.Add(new Item(name, price));
+                        break;
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("Ogiltig inmatning. Försök igen.");
+                    }
                 }
                 catch (FormatException)
                 {
@@ -46,20 +53,25 @@ while (true)
                     System.Console.WriteLine("Talet du har angett är för stort.");
                 }
             }
-
-
         }
         else if (choice == 2)
         {
             Console.Write("Nummer: ");
             try
             {
-                int number = int.Parse(Console.ReadLine());
-                list.RemoveAt(number);
+                string numberInput = Console.ReadLine();
+                if (int.TryParse(numberInput, out int number))
+                {
+                    list.RemoveAt(number);
+                }
+                else
+                {
+                    System.Console.WriteLine("Ogiltig inmatning. Du återgår nu till menyn.");
+                }
             }
             catch (FormatException)
             {
-                System.Console.WriteLine("Endast heltal är tillåtet. Du återgår nu till menyn");
+                System.Console.WriteLine("Endast heltal är tillåtet. Du återgår nu till menyn.");
             }
             catch (ArgumentOutOfRangeException)
             {
